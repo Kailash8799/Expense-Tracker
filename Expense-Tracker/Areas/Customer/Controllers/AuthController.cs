@@ -1,7 +1,10 @@
 ﻿using Expense.DataAccess.Repository;
 using Expense.DataAccess.Repository.IRepository;
 using Expense.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Expense_Tracker.Areas.Customer.Controllers
 {
@@ -21,6 +24,7 @@ namespace Expense_Tracker.Areas.Customer.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(string email, string password)
         {
             if (email == null)
@@ -36,6 +40,13 @@ namespace Expense_Tracker.Areas.Customer.Controllers
                 User? user = _userRepository.GetUserByEmail(email);
                 if(user != null) {
                     if(user.Password == password) {
+                        var identity = new ClaimsIdentity(new[] {
+                          new Claim(ClaimTypes.Name, user.Name),
+                            }, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                        var principal = new ClaimsPrincipal(identity);
+
+                        var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                         return RedirectToAction("Index", "Home");
                     } else {
                         TempData["message"] = "Invalid credentials";
@@ -51,12 +62,18 @@ namespace Expense_Tracker.Areas.Customer.Controllers
             return View();
         }
 
+        public IActionResult Logout() {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index","Auth");
+        }
+
         public IActionResult Signup()
         {
             return View("Signup");
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Signup(User user)
         {
             if (ModelState.IsValid)

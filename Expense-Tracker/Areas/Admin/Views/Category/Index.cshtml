@@ -1,0 +1,29 @@
+﻿
+@model List<Category>
+
+
+<div class="mt-2">
+    <h1 class="text-center my-3">All Categories</h1>
+    <partial name="_NotificationPartial" />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Category name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var categoey in Model) {
+        <tr class="table-active">
+            <td>@categoey.Title</td>
+            <td>@categoey.Type</td>
+            <td class="d-flex">
+             <a asp-area="admin" asp-controller="category" asp-action="edit" asp-route-id="@categoey.Id" class="btn mx-2 btn-outline-dark">Edit</a>
+             <a asp-area="admin" asp-controller="category" asp-action="delete" asp-route-id="@categoey.Id" class="btn btn-outline-dark">Delete</a>
+             </td>
+        </tr>
+        }
+    </tbody>
+</table>
+</div>

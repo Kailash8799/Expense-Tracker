@@ -25,35 +25,36 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="CreateTransacation">Create expense</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                <a class="dropdown-item" asp-area="admin" asp-controller="Category" asp-action="Index">Admin</a>
+                                
                             </div>
                         </li>
                     </ul>
-                    <div class="d-flex">
-                        <a class="text-white text-decoration-none btn btn-secondary my-2 my-sm-0" asp-area="Customer" asp-controller="auth" asp-action="index"> Login</a>
-                        <a class="text-white text-decoration-none btn btn-secondary my-2 mx-3 my-sm-0" asp-area="Customer" asp-controller="auth" asp-action="signup">Signup</a>
-                    </div>
+                    @{
+                        if(User.Identity.Name == null) {
+                            <div class="d-flex">
+                                <a class="text-white text-decoration-none btn btn-secondary my-2 my-sm-0" asp-area="Customer" asp-controller="auth" asp-action="index"> Login</a>
+                                <a class="text-white text-decoration-none btn btn-secondary my-2 mx-3 my-sm-0" asp-area="Customer" asp-controller="auth" asp-action="signup">Signup</a>
+                            </div>
+                        }else{
+                            <div class="d-flex">
+                                <a class="text-white text-decoration-none btn btn-secondary my-2 my-sm-0">@User.Identity.Name</a>
+                                <a class="text-white text-decoration-none btn btn-secondary my-2 mx-3 my-sm-0" asp-area="Customer" asp-controller="auth" asp-action="logout">Logout</a>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3 min-vh-100">
             @RenderBody()
         </main>
     </div>

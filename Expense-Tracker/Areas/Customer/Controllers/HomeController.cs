@@ -1,10 +1,12 @@
 ﻿using Expense.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Expense_Tracker.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,6 +23,10 @@ namespace Expense_Tracker.Areas.Customer.Controllers
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public IActionResult CreateTransacation() {
             return View();
         }
 

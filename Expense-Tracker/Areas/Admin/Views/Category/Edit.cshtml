@@ -1,0 +1,26 @@
+﻿@model Category
+
+<form method="post">
+    <fieldset>
+        <h1 class="my-3">Edit category</h1>
+        <div class="my-2">
+            <partial name="_NotificationPartial" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="form-label mt-4">Title</label>
+            <input asp-for="Title" type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter title">
+            <span class="text-danger" asp-validation-for="Title"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Type" class="form-label mt-4">Example select</label>
+            <select asp-for="Type" class="form-select" id="Type">
+                <option>Expense</option>
+                <option>Income</option>
+            </select>
+            <span class="text-danger" asp-validation-for="Type"></span>
+        </div>
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn mt-3 btn-primary">Submit</button>
+    </fieldset>
+</form>

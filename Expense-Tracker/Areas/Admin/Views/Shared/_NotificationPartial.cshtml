@@ -1,0 +1,16 @@
+﻿@{
+    if (TempData["message"] != null) {
+        <div class="alert alert-dismissible alert-@TempData["type"]">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>
+                @{
+                    if (TempData["type"] as string == "danger") {
+                        <span>Error</span>
+                    } else {
+                        <span>Success</span>
+                    }
+                }
+            </strong>@TempData["message"]
+        </div>
+    }
+}
