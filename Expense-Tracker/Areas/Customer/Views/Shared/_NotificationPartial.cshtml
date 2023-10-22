@@ -5,12 +5,12 @@
             <strong>
                 @{
                     if (TempData["type"] as string == "danger") {
-                        <span>Error</span>
+                        <span>Error </span>
                     } else {
-                        <span>Success</span>
+                        <span>Success </span>
                     }
                 }
-            </strong>@TempData["message"]
+            </strong> @TempData["message"]
         </div>
     }
 }

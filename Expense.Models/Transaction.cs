@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,6 +14,7 @@ namespace Expense.Models {
 
         public int  UserId { get; set; }
         [ForeignKey("UserId")]
+        [ValidateNever]
         public User User { get; set; }
 
         [Required]
@@ -24,6 +26,7 @@ namespace Expense.Models {
 
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
+        [ValidateNever]
         public Category Category { get; set; }
 
         [Required]
@@ -31,6 +34,5 @@ namespace Expense.Models {
         public string Description { get; set; }
 
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-
     }
 }

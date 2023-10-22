@@ -2,7 +2,33 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model List<Transaction>
+
+<div>
+    <partial name="_NotificationPartial" />
 </div>
+
+<div class="mt-5 d-flex align-content-center justify-content-center mb-3">
+    <h4>Create expense</h4>
+    <a class="text-white text-decoration-none btn btn-secondary my-2 mx-3 my-sm-0" asp-area="Customer" asp-controller="home" asp-action="CreateTransacation" asp->Create</a>
+</div>
+
+<div class="row">
+    
+    @foreach (var item in Model) {
+        <div class="card  text-white bg-primary mb-3 mx-3 border-primary mt-3 mb-3" style="max-width: 20rem;">
+        <div class="card-header">@item.Title</div>
+        <div class="card-body">
+                <h4 class="card-title">₹@item.Amount</h4>
+            <p class="card-text">@item.Description</p>
+            <p class="card-text">Created date :  @item.CreatedDate</p>
+                <div class="d-flex">
+                    <a class="text-white text-decoration-none btn btn-secondary my-2 my-sm-0" asp-area="Customer" asp-controller="home" asp-action="edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="text-white text-decoration-none btn btn-secondary my-2 mx-3 my-sm-0" asp-area="Customer" asp-controller="home" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                </div>
+        </div>
+    </div>
+    }
+</div>
+
+    @* <div>@item.CategoryId</div> *@

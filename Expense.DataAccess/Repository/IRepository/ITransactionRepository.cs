@@ -10,7 +10,7 @@ namespace Expense.DataAccess.Repository.IRepository {
         public void CreateTransition(Transaction transaction);
         public void UpdateTransition(Transaction transaction);
         public void DeleteTransition(Transaction transaction);
-        public IEnumerable<Transaction> GetTransactions();
+        public IEnumerable<Transaction> GetTransactions(int id);
         public Transaction? GetTransactionById(int id);
 
 

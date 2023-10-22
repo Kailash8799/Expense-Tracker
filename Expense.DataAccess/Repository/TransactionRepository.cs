@@ -30,9 +30,9 @@ namespace Expense.DataAccess.Repository {
             return _context.Transactionset.FirstOrDefault(x => x.Id == id);
         }
 
-
-        public IEnumerable<Transaction> GetTransactions() {
-            return _context.Transactionset;
+        public IEnumerable<Transaction> GetTransactions(int id) {
+            Console.WriteLine(id);
+            return _context.Transactionset.Where(u=>u.UserId == id);
         }
 
         public void UpdateTransition(Transaction transaction) {

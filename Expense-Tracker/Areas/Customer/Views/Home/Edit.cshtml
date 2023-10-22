@@ -2,14 +2,14 @@
 
 <form method="post">
     <fieldset>
-        <h1 class="my-3 text-center">Create expense</h1>
+        <h1 class="my-3 text-center">Edit expense</h1>
         <partial name="_NotificationPartial" />
         <div class="form-group">
             <label asp-for="Title" class="form-label mt-4">Title</label>
             <input asp-for="Title" type="text" class="form-control" id="Title" aria-describedby="emailHelp" placeholder="Enter title">
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
-        <input asp-for="UserId" type="number" value="@User.Identity.Name" class="form-control visually-hidden" id="Title" aria-describedby="emailHelp" placeholder="Enter title">
+        <input asp-for="UserId" type="number" value="4" class="form-control visually-hidden" id="Title" aria-describedby="emailHelp" placeholder="Enter title">
         <span asp-validation-for="User" class="text-danger"></span>
         <span asp-validation-for="Category" class="text-danger"></span>
         <div class="form-group">
@@ -25,7 +25,7 @@
             </select>
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
-     
+
         <div class="form-group">
             <label asp-for="Description" class="form-label mt-4">Example textarea</label>
             <textarea asp-for="Description" class="form-control" id="exampleTextarea" rows="3"></textarea>

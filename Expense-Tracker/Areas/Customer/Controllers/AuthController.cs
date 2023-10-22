@@ -20,6 +20,9 @@ namespace Expense_Tracker.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+            if (User.Identity.Name != null) {
+                return RedirectToAction("Index", "Home");
+            }
             return View("Index");
         }
 
@@ -41,7 +44,8 @@ namespace Expense_Tracker.Areas.Customer.Controllers
                 if(user != null) {
                     if(user.Password == password) {
                         var identity = new ClaimsIdentity(new[] {
-                          new Claim(ClaimTypes.Name, user.Name),
+                          new Claim(ClaimTypes.Name, user.Id.ToString()),
+                          new Claim(ClaimTypes.Email, user.Email),
                             }, CookieAuthenticationDefaults.AuthenticationScheme);
 
                         var principal = new ClaimsPrincipal(identity);
@@ -63,12 +67,18 @@ namespace Expense_Tracker.Areas.Customer.Controllers
         }
 
         public IActionResult Logout() {
+            if (User.Identity.Name == null) {
+                return RedirectToAction("Index", "Auth");
+            }
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index","Auth");
         }
 
         public IActionResult Signup()
         {
+            if (User.Identity.Name != null) {
+                return RedirectToAction("Index", "Home");
+            }
             return View("Signup");
         }
 
