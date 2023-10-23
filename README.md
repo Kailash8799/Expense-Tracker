@@ -50,7 +50,7 @@ Before you begin, ensure you have met the following requirements:
 - `Expense.Models`: Contains models of app.
 - `Controllers`: Contains controllers responsible for handling HTTP requests.
 - `Views`: Contains the views for the application.
-- `Models`: Defines the data models used in the application.
+- `Models`: Defines the data models used in the application . 
 
 ## Contact Information
 - [Twitter](https://twitter.com/thekailash8799)
